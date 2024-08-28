@@ -1,0 +1,19 @@
+<div class="alert alert-danger" role="alert" *ngIf="error != null">
+    {{ error }}
+</div>
+<div *ngIf="jogos.length">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4" *ngFor="let jogo of jogos">
+            <div class="card mb-4">
+              <img [src]="jogo.imgSrc" class="card-img-top" alt="{{ jogo.titulo }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ jogo.titulo }}</h5>
+                <p class="card-text">Preço: R$ {{ jogo.preco }}</p>
+                <a [href]="jogo.ref" target="_blank" class="btn btn-primary" rel="noopener noopener">Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

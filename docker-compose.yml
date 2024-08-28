@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:  
+  db_jogos:
+    container_name: db_jogos
+    image: postgres:15.4
+    environment:
+      - POSTGRES_DB=db_jogos
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/data/postgres
+    volumes:
+      - ./db/db_jogos:/data/postgres
+    ports:
+      - "5000:5432"
+    networks:
+      - db
+    restart: always
+
+networks:
+  db:
+    driver: bridge
