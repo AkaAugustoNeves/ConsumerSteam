@@ -1,5 +1,5 @@
 class Jogo:
-    def __init__(self, titulo: str, imgSrc: str, preco: float, ref: str):
+    def __init__(self, titulo: str, imgSrc: str, preco: str, ref: str):
         self.titulo = titulo
         self.imgSrc = imgSrc
         self.preco = preco

@@ -33,13 +33,31 @@ def getJogos(panel):
 def convertElementToJogo(jogos):
     resultado = []
     for jogo in jogos:
-        titulo = jogo.find_elements(By.CLASS_NAME, 'title')[0].text
-        imgSrc = jogo.find_element(By.XPATH, './/div/img').get_attribute('src')
-        preco = jogo.find_elements(By.CLASS_NAME, 'discount_final_price')[0].text
-        ref = jogo.get_attribute("href")
-
+        titulo = getTitulo(jogo) #jogo.find_elements(By.CLASS_NAME, 'title')[0].text
+        imgSrc = getImagem(jogo) #jogo.find_element(By.XPATH, './/div/img').get_attribute('src')
+        preco = getPreco(jogo) #jogo.find_elements(By.CLASS_NAME, 'discount_final_price')[0].text
+        ref = getLink(jogo) #jogo.get_attribute("href")
+        
         resultado.append(Jogo(titulo=titulo, imgSrc=imgSrc, preco=preco, ref= ref))
     return resultado
+
+def getTitulo(jogo):
+    titulo = jogo.find_elements(By.CLASS_NAME, 'title')[0].text
+    return titulo
+
+def getImagem(jogo):
+    imagem = jogo.find_element(By.XPATH, './/div/img').get_attribute('src')
+    return imagem
+
+def getPreco(jogo):
+    preco = jogo.find_elements(By.CLASS_NAME, 'discount_final_price')#[0].text
+    if preco:
+        return preco[0].text
+    else:
+        return "sem preço"
+
+def getLink(jogo):
+    return jogo.get_attribute("href")
 
 if __name__ == "__main__":
     main()
